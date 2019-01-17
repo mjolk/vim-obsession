@@ -1,3 +1,7 @@
+" File   : obsession.vim
+" License: MIT/X11
+" Author : Dries Pauwels <2mjolk@gmail.com>
+" Date   : do 17 jan 2019 04:54
 " obsession.vim - Continuously updated session files
 " Maintainer:   Tim Pope <http://tpo.pe/>
 " Version:      1.0
@@ -26,15 +30,15 @@ function! s:dispatch(bang, file) abort
     elseif empty(a:file) && !empty(session)
       let file = session
     elseif empty(a:file)
-      let file = getcwd() . '/Session.vim'
+      let file = getcwd() . '/.session.vim'
     elseif isdirectory(a:file)
       let file = substitute(fnamemodify(expand(a:file), ':p'), '[\/]$', '', '')
-            \ . '/Session.vim'
+            \ . '/.session.vim'
     else
       let file = fnamemodify(expand(a:file), ':p')
     endif
     if !a:bang
-      \ && file !~# 'Session\.vim$'
+      \ && file !~# '.session\.vim$'
       \ && filereadable(file)
       \ && getfsize(file) > 0
       \ && readfile(file, '', 1)[0] !=# 'let SessionLoad = 1'
